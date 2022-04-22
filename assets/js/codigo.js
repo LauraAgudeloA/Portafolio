@@ -1,69 +1,20 @@
-pageTransition = () => {
-    var timeline = gsap.timeline();
-
-    timeline.to("header", {
-        zIndex: 1
-    });
-
-    timeline.to(".loading-screen", {
-        duration: 1,
-        height: "100%",
-        top: "0%"
-    });
-
-    timeline.to(".loading-screen", {
-        duration: .8,
-        height: "100%",
-        top: "100%",
-        delay: .3
-    });
-
-    timeline.set(".loading-screen", {
-        top: "-100%"
-    });
-}
-
-mainAnimation = () => {
-    var timeline = gsap.timeline();
-    
-    timeline.from(".container h1, .menu-items li, .logo", {
-        duration: 1,
-        y: 30,
-        opacity: 0,
-        stagger: {
-            amount: .4
-        },
-        delay: .8
-    });
-}
-
-delay = (n) => {
-    n = n || 2000;
-    return new Promise((done)=> {
-        setTimeout(()=> {
-            done();
-        }, n);
-    })
-}
-
-barba.init({
-    sync: true,
-    transitions: [
-        {
-            async leave(data){
-                const done = this.async();
-                pageTransition();
-                await delay(1000);
-                done();
-            },
-
-            async enter (data){
-                mainAnimation();
-            },
-
-            async once(data){
-                mainAnimation();
-            }
-        }
-    ]
+/*Obtener resultado de input en inicio*/
+const boton = document.querySelector("#botonInicio");
+// Agregar listener
+boton.addEventListener("click", function(evento){
+    debugger
+	let input = document.querySelector("#texto").value; 
+    if (input === 'Laura' || input === 'laura') {
+        window.location.href = location.origin + '/index.html';
+    } else {
+        alert('Ups! Fallaste, pero ánimo, sigue intentando!')
+    }
 });
+
+
+/* const inicio = new Vue({
+    el: '#inicio',
+    data: {
+        titulo: '¡Hola! Soy Laura Agudelo.',
+    }
+}) */
